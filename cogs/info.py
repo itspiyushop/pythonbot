@@ -30,10 +30,15 @@ class Info(commands.Cog):
     async def help(self, ctx, command_name=None):
         
         if command_name is None:
-            all_commands = ", ".join([command.name for command in self.bot.get_commands()])
+
+            all_commands = []
+            for cog in self.bot.cogs.values():
+                for command in cog.get_commands():
+                    all_commands.append(command.name)
+            all_commands_str = ", ".join(all_commands)
             format = (
                 f"```md\n# {self.bot.user.name} - Commands List\n```"
-                f"```md\n{all_commands}\n```"
+                f"```md\n{all_commands_str}\n```"
                 f"```md\n> Use {self.bot.prefix}help [command-name] For More Information\n```")
             
             await ctx.send(format, delete_after=30)
