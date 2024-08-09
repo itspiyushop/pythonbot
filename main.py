@@ -6,6 +6,7 @@ import json
 import sys
 import os
 
+keep_alive()
 
 class DiscordBot(commands.Bot):
   def __init__(self, prefix, intents):
@@ -85,4 +86,4 @@ class DiscordBot(commands.Bot):
 if __name__ == "__main__":
   discord_bot = DiscordBot
   discord_bot.init()
-  keep_alive()
+  
